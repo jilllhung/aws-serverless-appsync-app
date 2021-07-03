@@ -1,3 +1,6 @@
+# 2021/7/3 Update
+ Install react-apollo@2.5.8 instead of the newest version.
+
 # Serverless Web Application with AppSync Workshop
 
 <a href="https://www.youtube.com/watch?v=sQN28Jo-nak" target="_blank"><img src="images/twitch.png" align="center" width="500" alt="Serverless Bytes | Building a Serverless GraphQL App"></a>

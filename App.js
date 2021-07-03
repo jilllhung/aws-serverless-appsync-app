@@ -7,9 +7,8 @@ import AllDestinations from "./Components/AllDestinations";
 import AddDestination from "./Components/AddDestination";
 import NewDestinationsSubscription from './Queries/NewDestinationsSubscription';
 
-import AWSAppSyncClient from "aws-appsync";
+import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync";
 import { Rehydrated } from 'aws-appsync-react';
-import { AUTH_TYPE } from "aws-appsync/lib/link/auth-link";
 import { graphql, ApolloProvider, compose } from 'react-apollo';
 import * as AWS from 'aws-sdk';
 import AppSync from './aws-exports.js';
@@ -139,11 +138,11 @@ const AllDestinationsWithData = compose(
             const query = AllDestinationsQuery;
             const data = dataProxy.readQuery({ query });
 
-            data.getAllDestinations.destinations.push(addDestination);
+            data.getAllDestinations.push(addDestination);
 
             dataProxy.writeQuery({ query, data });
         },
-        fetchPolicy: 'cache-and-network',
+        fetchPolicy: 'no-cache',
         disableOffline:false  
     }
   })(AddDestination);

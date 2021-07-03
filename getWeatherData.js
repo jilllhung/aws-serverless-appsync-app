@@ -10,7 +10,7 @@ exports.handler = (event, context, callback) => {
     http.get({
       hostname: 'api.openweathermap.org',
       port: 80,
-      path: '/data/2.5/forecast?q='+ city +'&appid=' + process.env.APPID + '&cnt=3&units=imperial',
+      path: '/data/2.5/weather?q='+ city +'&appid=' + process.env.APPID + '&cnt=3&units=imperial',
       agent: false  // create a new agent just for this one request
     }, (res) => {
        
@@ -25,11 +25,11 @@ exports.handler = (event, context, callback) => {
             var parsed = JSON.parse(body);
             console.log(body);
             
-            var current = parsed.list[0].main.temp;
-            var maxTemp = parsed.list[0].main.temp_max;
-            var minTemp = parsed.list[0].main.temp_min;
-            var description = parsed.list[0].weather[0].main ;
-            var descriptionText = parsed.list[0].weather[0].description ;
+            var current = parsed.main.temp;
+            var maxTemp = parsed.main.temp_max;
+            var minTemp = parsed.main.temp_min;
+            var description = parsed.weather[0].main ;
+            var descriptionText = parsed.weather[0].description ;
             
             callback(null, {
               description: description + ":" + descriptionText,
